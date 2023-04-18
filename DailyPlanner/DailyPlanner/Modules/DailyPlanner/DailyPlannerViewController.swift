@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DailyPlannerViewController.swift
 //  DailyPlanner
 //
 //  Created by Lena Vorontsova on 17.04.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class DailyPlannerViewController: UIViewController {
     private var monthLabel: UILabel = {
         let label = UILabel()
         label.text = "Month"
@@ -35,7 +35,17 @@ class ViewController: UIViewController {
         }
         return button
     }()
-
+    var presenter: DailyPlannerPresenting
+    
+    init(presenter: DailyPlannerPresenting) {
+            self.presenter = presenter
+            super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white

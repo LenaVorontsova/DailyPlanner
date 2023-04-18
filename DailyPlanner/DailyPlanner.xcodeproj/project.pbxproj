@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8441632629EDBCBB006C3721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441632529EDBCBB006C3721 /* AppDelegate.swift */; };
-		8441632A29EDBCBB006C3721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441632929EDBCBB006C3721 /* ViewController.swift */; };
+		8441632A29EDBCBB006C3721 /* DailyPlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441632929EDBCBB006C3721 /* DailyPlannerViewController.swift */; };
 		8441632F29EDBCBD006C3721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8441632E29EDBCBD006C3721 /* Assets.xcassets */; };
 		8441633229EDBCBD006C3721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441633029EDBCBD006C3721 /* LaunchScreen.storyboard */; };
 		8441633A29EDBD87006C3721 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8441633929EDBD87006C3721 /* .swiftlint.yml */; };
 		8441633D29EDBEBC006C3721 /* StartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441633C29EDBEBC006C3721 /* StartService.swift */; };
 		8441634229EEC717006C3721 /* DailyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634129EEC717006C3721 /* DailyPlannerConstants.swift */; };
+		8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */; };
+		8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */; };
 		D66A2A726F39A2040140AC29 /* Pods_DailyPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C60E1272A009CE337F0CA2 /* Pods_DailyPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,13 +25,15 @@
 		82B55DE0D73CF03A3894F9F7 /* Pods-DailyPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyPlanner.release.xcconfig"; path = "Target Support Files/Pods-DailyPlanner/Pods-DailyPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		8441632229EDBCBB006C3721 /* DailyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8441632529EDBCBB006C3721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8441632929EDBCBB006C3721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8441632929EDBCBB006C3721 /* DailyPlannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerViewController.swift; sourceTree = "<group>"; };
 		8441632E29EDBCBD006C3721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8441633129EDBCBD006C3721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8441633329EDBCBD006C3721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8441633929EDBD87006C3721 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8441633C29EDBEBC006C3721 /* StartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartService.swift; sourceTree = "<group>"; };
 		8441634129EEC717006C3721 /* DailyPlannerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerConstants.swift; sourceTree = "<group>"; };
+		8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerPresenter.swift; sourceTree = "<group>"; };
+		8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +110,7 @@
 		8441633E29EDBFEC006C3721 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8441632929EDBCBB006C3721 /* ViewController.swift */,
+				8441634329EECC09006C3721 /* DailyPlanner */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -124,6 +128,16 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8441634329EECC09006C3721 /* DailyPlanner */ = {
+			isa = PBXGroup;
+			children = (
+				8441632929EDBCBB006C3721 /* DailyPlannerViewController.swift */,
+				8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */,
+				8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */,
+			);
+			path = DailyPlanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8441633D29EDBEBC006C3721 /* StartService.swift in Sources */,
-				8441632A29EDBCBB006C3721 /* ViewController.swift in Sources */,
+				8441632A29EDBCBB006C3721 /* DailyPlannerViewController.swift in Sources */,
+				8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */,
 				8441634229EEC717006C3721 /* DailyPlannerConstants.swift in Sources */,
+				8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */,
 				8441632629EDBCBB006C3721 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

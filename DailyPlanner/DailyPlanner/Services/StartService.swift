@@ -17,7 +17,7 @@ final class StartService {
     
     func configureWindow() {
         if let win = window {
-            win.rootViewController = UINavigationController(rootViewController: ViewController())
+            win.rootViewController = UINavigationController(rootViewController: DailyPlannerBuilder.build())
             win.makeKeyAndVisible()
         }
     }
