@@ -14,4 +14,7 @@ enum DailyPlannerConstants {
     static let monthButtonOffset = 20
     static let monthButtonHeight = 20
     static let monthButtonWeight = 30
+    
+    static let stackTop = 20
+    
 }
