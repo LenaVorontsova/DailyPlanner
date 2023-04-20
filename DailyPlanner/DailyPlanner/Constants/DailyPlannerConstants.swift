@@ -17,4 +17,5 @@ enum DailyPlannerConstants {
     
     static let stackTop = 20
     
+    static let daysBottom = 600
 }

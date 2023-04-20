@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DateCollectionViewCell: UICollectionViewCell {
+final class WeekCollectionViewCell: UICollectionViewCell {
     static let collectionCellId = "DateCollectionViewCell"
     
     let dateLabel: UILabel = {
@@ -30,8 +30,7 @@ final class DateCollectionViewCell: UICollectionViewCell {
     private func configureContstrains() {
         contentView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview().inset(12)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.trailing.bottom.top.equalToSuperview()
         }
     }
 }

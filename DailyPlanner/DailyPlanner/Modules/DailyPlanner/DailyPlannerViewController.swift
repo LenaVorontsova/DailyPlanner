@@ -98,15 +98,19 @@ class DailyPlannerViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    private var dateCollectionView = DateCollectionView()
-    
+//    private var weekCollectionView: UICollectionView = {
+//        var collectionView = UICollectionView()
+//        collectionView.backgroundColor = .red
+//        return collectionView
+//    }()
+    private var weekCollectionView: UICollectionView!
     var presenter: DailyPlannerPresenting
     var selectedDate = Date()
     var totalSqures = [Date]()
     
     init(presenter: DailyPlannerPresenting) {
-            self.presenter = presenter
-            super.init(nibName: nil, bundle: nil)
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -118,8 +122,16 @@ class DailyPlannerViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Daily Planner"
         
-        self.dateCollectionView.delegate = self
-        self.dateCollectionView.dataSource = self
+        let layout = UICollectionViewFlowLayout()
+        weekCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        self.weekCollectionView.register(
+            WeekCollectionViewCell.self,
+            forCellWithReuseIdentifier: WeekCollectionViewCell.collectionCellId)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        
+        self.weekCollectionView.delegate = self
+        self.weekCollectionView.dataSource = self
         self.addLabelsToTheStackView()
         self.configureConstraints()
         monthLeftButton.addTarget(
@@ -130,15 +142,7 @@ class DailyPlannerViewController: UIViewController {
             self,
             action: #selector(scrollToNextWeek),
             for: .touchUpInside)
-        self.setCellsView()
         self.setMonthView()
-    }
-    
-    private func setCellsView() {
-        let width = (dateCollectionView.frame.size.width-2)/8
-        let height = (dateCollectionView.frame.size.height-2)/8
-        let flowLayout = dateCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.itemSize = CGSize(width: width, height: height )
     }
     
     private func setMonthView() {
@@ -153,7 +157,7 @@ class DailyPlannerViewController: UIViewController {
         }
         
         monthLabel.text = presenter.monthString(date: selectedDate) + " " + presenter.yearString(date: selectedDate)
-        dateCollectionView.reloadData()
+        weekCollectionView.reloadData()
     }
     
     @objc
@@ -164,7 +168,7 @@ class DailyPlannerViewController: UIViewController {
     
     @objc
     func scrollToNextWeek() {
-        selectedDate = presenter.addDays(date: selectedDate, days: -7)
+        selectedDate = presenter.addDays(date: selectedDate, days: 7)
         setMonthView()
     }
     
@@ -187,7 +191,7 @@ class DailyPlannerViewController: UIViewController {
         self.view.addSubview(monthLeftButton)
         self.view.addSubview(monthRightButton)
         self.view.addSubview(weekStackView)
-        self.view.addSubview(dateCollectionView)
+        self.view.addSubview(weekCollectionView)
         monthLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(DailyPlannerConstants.monthTop)
             $0.leading.equalTo(monthLeftButton.snp.trailing).offset(DailyPlannerConstants.monthButtonOffset)
@@ -207,33 +211,47 @@ class DailyPlannerViewController: UIViewController {
             $0.top.equalTo(monthLabel.snp.bottom).offset(DailyPlannerConstants.stackTop)
             $0.leading.trailing.equalToSuperview()
         }
-        dateCollectionView.snp.makeConstraints {
+        weekCollectionView.snp.makeConstraints {
             $0.top.equalTo(weekStackView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(DailyPlannerConstants.daysBottom)
         }
     }
 }
 
-extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalSqures.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedDate = totalSqures[indexPath.item]
+        collectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = dateCollectionView.dequeueReusableCell(
-            withReuseIdentifier: DateCollectionViewCell.collectionCellId,
-            for: indexPath) as? DateCollectionViewCell else {
+        guard let cell = weekCollectionView.dequeueReusableCell(
+            withReuseIdentifier: WeekCollectionViewCell.collectionCellId,
+            for: indexPath) as? WeekCollectionViewCell else {
                 return UICollectionViewCell()
         }
         let date = totalSqures[indexPath.item]
         cell.dateLabel.text = String(presenter.daysOfMonth(date: date))
         
         if date == selectedDate {
-            cell.backgroundColor = .green
+            cell.backgroundColor = .gray
         } else {
             cell.backgroundColor = .white
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let width = (weekCollectionView.frame.size.width-2)/8
+//        let height = (weekCollectionView.frame.size.height-2)/8
+//
+//        return CGSize(width: width, height: height)
+        return CGSize.init(width: 56, height: 40)
     }
 }
 

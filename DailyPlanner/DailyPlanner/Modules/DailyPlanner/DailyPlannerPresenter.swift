@@ -25,11 +25,11 @@ final class DailyPlannerPresenter: DailyPlannerPresenting {
     let calendar = Calendar.current
     
     func plusMonth(date: Date) -> Date {
-        return calendar.date(byAdding: .month, value: -1, to: date)!
+        return calendar.date(byAdding: .weekOfMonth, value: 1, to: date)!
     }
     
     func minusMonth(date: Date) -> Date {
-        return calendar.date(byAdding: .month, value: 11, to: date)!
+        return calendar.date(byAdding: .weekOfMonth, value: 7, to: date)!
     }
     
     func monthString(date: Date) -> String {
@@ -76,7 +76,7 @@ final class DailyPlannerPresenter: DailyPlannerPresenting {
             if currentWeekDay == 1 {
                 return current
             }
-            current = addDays(date: current, days: 1)
+            current = addDays(date: current, days: -1)
         }
         return current
     }

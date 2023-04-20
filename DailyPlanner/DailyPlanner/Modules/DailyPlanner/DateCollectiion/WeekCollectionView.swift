@@ -8,13 +8,15 @@
 import UIKit
 import SnapKit
 
-final class DateCollectionView: UICollectionView {
+final class WeekCollectionView: UICollectionView {
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        register(DateCollectionViewCell.self,
-                 forCellWithReuseIdentifier: DateCollectionViewCell.collectionCellId)
+        self.showsHorizontalScrollIndicator = false
+        register(WeekCollectionViewCell.self,
+                 forCellWithReuseIdentifier: WeekCollectionViewCell.collectionCellId)
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
