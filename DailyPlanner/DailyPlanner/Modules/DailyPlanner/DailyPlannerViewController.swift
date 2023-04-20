@@ -22,7 +22,7 @@ class DailyPlannerViewController: UIViewController {
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "arrowshape.left.fill"), for: .normal)
         } else {
-            button.setTitle("Next", for: .normal)
+            button.setTitle("Previous", for: .normal)
         }
         return button
     }()
@@ -31,14 +31,13 @@ class DailyPlannerViewController: UIViewController {
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "arrowshape.right.fill"), for: .normal)
         } else {
-            button.setTitle("Previous", for: .normal)
+            button.setTitle("Next", for: .normal)
         }
         return button
     }()
     private var weekStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        // stack.spacing = 5.0
         stack.backgroundColor = .clear
         stack.distribution = .fillEqually
         return stack
@@ -99,8 +98,11 @@ class DailyPlannerViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    private var dateCollectionView = DateCollectionView()
     
     var presenter: DailyPlannerPresenting
+    var selectedDate = Date()
+    var totalSqures = [Date]()
     
     init(presenter: DailyPlannerPresenting) {
             self.presenter = presenter
@@ -115,8 +117,59 @@ class DailyPlannerViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.title = "Daily Planner"
+        
+        self.dateCollectionView.delegate = self
+        self.dateCollectionView.dataSource = self
         self.addLabelsToTheStackView()
         self.configureConstraints()
+        monthLeftButton.addTarget(
+            self,
+            action: #selector(scrollToPreviousWeek),
+            for: .touchUpInside)
+        monthRightButton.addTarget(
+            self,
+            action: #selector(scrollToNextWeek),
+            for: .touchUpInside)
+        self.setCellsView()
+        self.setMonthView()
+    }
+    
+    private func setCellsView() {
+        let width = (dateCollectionView.frame.size.width-2)/8
+        let height = (dateCollectionView.frame.size.height-2)/8
+        let flowLayout = dateCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.itemSize = CGSize(width: width, height: height )
+    }
+    
+    private func setMonthView() {
+        totalSqures.removeAll()
+        
+        var current = presenter.mondayForDate(date: selectedDate)
+        let nextMonday = presenter.addDays(date: selectedDate, days: 7)
+        
+        while current < nextMonday {
+            totalSqures.append(current)
+            current = presenter.addDays(date: current, days: 1)
+        }
+        
+        monthLabel.text = presenter.monthString(date: selectedDate) + " " + presenter.yearString(date: selectedDate)
+        dateCollectionView.reloadData()
+    }
+    
+    @objc
+    func scrollToPreviousWeek() {
+        selectedDate = presenter.addDays(date: selectedDate, days: -7)
+        setMonthView()
+    }
+    
+    @objc
+    func scrollToNextWeek() {
+        selectedDate = presenter.addDays(date: selectedDate, days: -7)
+        setMonthView()
+    }
+    
+    override open var shouldAutorotate: Bool {
+        return false
     }
     
     private func addLabelsToTheStackView() {
@@ -134,6 +187,7 @@ class DailyPlannerViewController: UIViewController {
         self.view.addSubview(monthLeftButton)
         self.view.addSubview(monthRightButton)
         self.view.addSubview(weekStackView)
+        self.view.addSubview(dateCollectionView)
         monthLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(DailyPlannerConstants.monthTop)
             $0.leading.equalTo(monthLeftButton.snp.trailing).offset(DailyPlannerConstants.monthButtonOffset)
@@ -153,6 +207,33 @@ class DailyPlannerViewController: UIViewController {
             $0.top.equalTo(monthLabel.snp.bottom).offset(DailyPlannerConstants.stackTop)
             $0.leading.trailing.equalToSuperview()
         }
+        dateCollectionView.snp.makeConstraints {
+            $0.top.equalTo(weekStackView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+    }
+}
+
+extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return totalSqures.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = dateCollectionView.dequeueReusableCell(
+            withReuseIdentifier: DateCollectionViewCell.collectionCellId,
+            for: indexPath) as? DateCollectionViewCell else {
+                return UICollectionViewCell()
+        }
+        let date = totalSqures[indexPath.item]
+        cell.dateLabel.text = String(presenter.daysOfMonth(date: date))
+        
+        if date == selectedDate {
+            cell.backgroundColor = .green
+        } else {
+            cell.backgroundColor = .white
+        }
+        return cell
     }
 }
 

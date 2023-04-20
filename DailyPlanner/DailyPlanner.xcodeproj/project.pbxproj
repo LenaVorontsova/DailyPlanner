@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		8441634229EEC717006C3721 /* DailyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634129EEC717006C3721 /* DailyPlannerConstants.swift */; };
 		8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */; };
 		8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */; };
+		8441634929EED356006C3721 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634829EED356006C3721 /* DateCollectionViewCell.swift */; };
+		8441634C29F127EF006C3721 /* DateCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634B29F127EF006C3721 /* DateCollectionView.swift */; };
 		D66A2A726F39A2040140AC29 /* Pods_DailyPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C60E1272A009CE337F0CA2 /* Pods_DailyPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		8441634129EEC717006C3721 /* DailyPlannerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerConstants.swift; sourceTree = "<group>"; };
 		8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerPresenter.swift; sourceTree = "<group>"; };
 		8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerBuilder.swift; sourceTree = "<group>"; };
+		8441634829EED356006C3721 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		8441634B29F127EF006C3721 /* DateCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,11 +137,21 @@
 		8441634329EECC09006C3721 /* DailyPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				8441634A29F127CC006C3721 /* DateCollectiion */,
 				8441632929EDBCBB006C3721 /* DailyPlannerViewController.swift */,
 				8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */,
 				8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */,
 			);
 			path = DailyPlanner;
+			sourceTree = "<group>";
+		};
+		8441634A29F127CC006C3721 /* DateCollectiion */ = {
+			isa = PBXGroup;
+			children = (
+				8441634829EED356006C3721 /* DateCollectionViewCell.swift */,
+				8441634B29F127EF006C3721 /* DateCollectionView.swift */,
+			);
+			path = DateCollectiion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +192,7 @@
 				};
 			};
 			buildConfigurationList = 8441631D29EDBCBB006C3721 /* Build configuration list for PBXProject "DailyPlanner" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -255,12 +269,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8441634C29F127EF006C3721 /* DateCollectionView.swift in Sources */,
 				8441633D29EDBEBC006C3721 /* StartService.swift in Sources */,
 				8441632A29EDBCBB006C3721 /* DailyPlannerViewController.swift in Sources */,
 				8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */,
 				8441634229EEC717006C3721 /* DailyPlannerConstants.swift in Sources */,
 				8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */,
 				8441632629EDBCBB006C3721 /* AppDelegate.swift in Sources */,
+				8441634929EED356006C3721 /* DateCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
