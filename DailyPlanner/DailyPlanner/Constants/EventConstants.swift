@@ -10,5 +10,7 @@ import Foundation
 enum EventConstants {
     static let nameTop = 10
     static let nameInset = 20
-    static let nameBottom = 650
+    static let nameBottom = 250
+    
+    static let dateInset = 75
 }

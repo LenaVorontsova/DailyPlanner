@@ -28,6 +28,10 @@ final class EventViewController: UIViewController {
         textView.font = .systemFont(ofSize: 18)
         return textView
     }()
+    private var dateEvent: UIDatePicker = {
+        var date = UIDatePicker()
+        return date
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,7 @@ final class EventViewController: UIViewController {
     private func configureConstraints() {
         view.addSubview(nameEvent)
         view.addSubview(descriptionEvent)
+        view.addSubview(dateEvent)
         
         nameEvent.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(EventConstants.nameTop)
@@ -48,6 +53,10 @@ final class EventViewController: UIViewController {
         descriptionEvent.snp.makeConstraints {
             $0.top.equalTo(nameEvent.snp.bottom).offset(EventConstants.nameTop)
             $0.leading.trailing.equalToSuperview().inset(EventConstants.nameInset)
+        }
+        dateEvent.snp.makeConstraints {
+            $0.top.equalTo(descriptionEvent.snp.bottom).offset(EventConstants.nameTop)
+            $0.leading.trailing.equalToSuperview().inset(EventConstants.dateInset)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(EventConstants.nameBottom)
         }
     }
