@@ -22,6 +22,7 @@
 		8441635129F17CB4006C3721 /* TasksCellConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635029F17CB4006C3721 /* TasksCellConstants.swift */; };
 		8441635329F54846006C3721 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635229F54846006C3721 /* Event.swift */; };
 		8441635629F558AC006C3721 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635529F558AC006C3721 /* EventViewController.swift */; };
+		8441635829F55B27006C3721 /* EventConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635729F55B27006C3721 /* EventConstants.swift */; };
 		D66A2A726F39A2040140AC29 /* Pods_DailyPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C60E1272A009CE337F0CA2 /* Pods_DailyPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		8441635029F17CB4006C3721 /* TasksCellConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCellConstants.swift; sourceTree = "<group>"; };
 		8441635229F54846006C3721 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8441635529F558AC006C3721 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		8441635729F55B27006C3721 /* EventConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				8441634129EEC717006C3721 /* DailyPlannerConstants.swift */,
 				8441635029F17CB4006C3721 /* TasksCellConstants.swift */,
+				8441635729F55B27006C3721 /* EventConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				8441634C29F127EF006C3721 /* WeekCollectionView.swift in Sources */,
 				8441633D29EDBEBC006C3721 /* StartService.swift in Sources */,
 				8441632A29EDBCBB006C3721 /* DailyPlannerViewController.swift in Sources */,
+				8441635829F55B27006C3721 /* EventConstants.swift in Sources */,
 				8441635629F558AC006C3721 /* EventViewController.swift in Sources */,
 				8441634F29F17B97006C3721 /* TasksTableViewCell.swift in Sources */,
 				8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */,
