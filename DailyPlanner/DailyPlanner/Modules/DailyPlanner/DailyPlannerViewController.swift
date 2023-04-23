@@ -127,7 +127,7 @@ class DailyPlannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationItem.title = "Daily Planner"
+        self.navigationItem.title = "Ежедневник"
         self.navigationItem.rightBarButtonItem = rightButton
         
         let layout = UICollectionViewFlowLayout()

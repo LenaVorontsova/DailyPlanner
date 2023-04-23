@@ -11,7 +11,7 @@ import SnapKit
 final class EventViewController: UIViewController {
     private var nameEvent: UITextField = {
         var textField = UITextField()
-        textField.placeholder = "Name"
+        textField.placeholder = "Название"
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor(red: 212/255, green: 239/255, blue: 250/255, alpha: 1).cgColor
@@ -32,13 +32,27 @@ final class EventViewController: UIViewController {
         var date = UIDatePicker()
         return date
     }()
+    private var saveButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.title = "Сохранить"
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationItem.title = "Event"
+        self.navigationItem.title = "Событие"
+        self.navigationItem.rightBarButtonItem = saveButton
         
+        saveButton.target = self
+        saveButton.action = #selector(saveData)
         self.configureConstraints()
+    }
+    
+    @objc
+    private func saveData() {
+        self.navigationController?.popViewController(animated: false)
+        dismiss(animated: false)
     }
     
     private func configureConstraints() {
