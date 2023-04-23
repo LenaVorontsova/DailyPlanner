@@ -43,6 +43,7 @@ final class EventViewController: UIViewController {
         view.backgroundColor = .white
         self.navigationItem.title = "Событие"
         self.navigationItem.rightBarButtonItem = saveButton
+        dateEvent.date = selectedDate
         
         saveButton.target = self
         saveButton.action = #selector(saveData)
@@ -51,6 +52,12 @@ final class EventViewController: UIViewController {
     
     @objc
     private func saveData() {
+        let newEvent = Event()
+        newEvent.id = eventsList.count
+        newEvent.name = nameEvent.text
+        newEvent.description = descriptionEvent.text
+        newEvent.date = dateEvent.date
+        eventsList.append(newEvent)
         self.navigationController?.popViewController(animated: false)
         dismiss(animated: false)
     }

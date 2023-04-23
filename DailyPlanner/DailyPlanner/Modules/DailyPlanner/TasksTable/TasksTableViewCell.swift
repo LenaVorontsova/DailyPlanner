@@ -29,7 +29,6 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.backgroundColor = .blue
         return label
     }()
     var taskText2: UILabel = {
@@ -38,7 +37,6 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.backgroundColor = .blue
         return label
     }()
     
@@ -48,7 +46,6 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.backgroundColor = .blue
         return label
     }()
     

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-@available(iOS 13.0, *)
+var selectedDate = Date()
 class DailyPlannerViewController: UIViewController {
     private var monthLabel: UILabel = {
         let label = UILabel()
@@ -111,7 +111,6 @@ class DailyPlannerViewController: UIViewController {
     }()
     
     var presenter: DailyPlannerPresenting
-    var selectedDate = Date()
     var totalSqures = [Date]()
     var hours = [Int]()
     
@@ -168,6 +167,7 @@ class DailyPlannerViewController: UIViewController {
         super.viewDidAppear(animated)
         self.setMonthView()
         self.setDayView()
+        self.tasksTableView.reloadData()
     }
     
     private func setDayView() {

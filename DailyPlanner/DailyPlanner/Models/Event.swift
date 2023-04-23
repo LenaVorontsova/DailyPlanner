@@ -8,16 +8,17 @@
 import Foundation
 
 var eventsList = [Event]()
+
 final class Event {
-    let id: Int! = nil
-    let date: Date! = nil
-    let name: String! = nil
-    let description: String! = nil
+    var id: Int? = nil
+    var date: Date? = nil
+    var name: String? = nil
+    var description: String? = nil
     
     func eventsForDate(date: Date) -> [Event] {
         var daysEvents = [Event]()
         for event in eventsList {
-            if Calendar.current.isDate(event.date, inSameDayAs: date) {
+            if Calendar.current.isDate(event.date!, inSameDayAs: date) {
                 daysEvents.append(event)
             }
         }
@@ -27,8 +28,8 @@ final class Event {
     func eventsForDateAndTime(date: Date, hour: Int) -> [Event] {
         var daysEvents = [Event]()
         for event in eventsList {
-            if Calendar.current.isDate(event.date, inSameDayAs: date) {
-                let eventHour = DailyPlannerPresenter().hourFromDate(date: event.date)
+            if Calendar.current.isDate(event.date!, inSameDayAs: date) {
+                let eventHour = DailyPlannerPresenter().hourFromDate(date: event.date!)
                 if eventHour == hour {
                     daysEvents.append(event)
                 }
