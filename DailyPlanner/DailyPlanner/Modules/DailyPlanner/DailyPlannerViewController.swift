@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+@available(iOS 13.0, *)
 class DailyPlannerViewController: UIViewController {
     private var monthLabel: UILabel = {
         let label = UILabel()
@@ -98,15 +99,21 @@ class DailyPlannerViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-//    private var weekCollectionView: UICollectionView = {
-//        var collectionView = UICollectionView()
-//        collectionView.backgroundColor = .red
-//        return collectionView
-//    }()
     private var weekCollectionView: UICollectionView!
+    private var tasksTableView: UITableView = {
+        var table = UITableView()
+        return table
+    }()
+    private var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.title = "Добавить"
+        return button
+    }()
+    
     var presenter: DailyPlannerPresenting
     var selectedDate = Date()
     var totalSqures = [Date]()
+    var hours = [Int]()
     
     init(presenter: DailyPlannerPresenting) {
         self.presenter = presenter
@@ -121,6 +128,7 @@ class DailyPlannerViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.title = "Daily Planner"
+        self.navigationItem.rightBarButtonItem = rightButton
         
         let layout = UICollectionViewFlowLayout()
         weekCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -134,6 +142,13 @@ class DailyPlannerViewController: UIViewController {
         self.weekCollectionView.dataSource = self
         self.addLabelsToTheStackView()
         self.configureConstraints()
+        
+        self.tasksTableView.delegate = self
+        self.tasksTableView.dataSource = self
+        self.tasksTableView.register(
+            TasksTableViewCell.self,
+            forCellReuseIdentifier: TasksTableViewCell.tableCellId)
+        
         monthLeftButton.addTarget(
             self,
             action: #selector(scrollToPreviousWeek),
@@ -142,7 +157,27 @@ class DailyPlannerViewController: UIViewController {
             self,
             action: #selector(scrollToNextWeek),
             for: .touchUpInside)
+        rightButton.target = self
+        rightButton.action = #selector(addEvent)
+        
         self.setMonthView()
+        self.initTime()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setMonthView()
+        self.setDayView()
+    }
+    
+    private func setDayView() {
+        
+    }
+    
+    private func initTime() {
+        for hour in 0...23 {
+            hours.append(hour)
+        }
     }
     
     private func setMonthView() {
@@ -172,6 +207,12 @@ class DailyPlannerViewController: UIViewController {
         setMonthView()
     }
     
+    @objc
+    func addEvent() {
+        let vc = EventViewController()
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
     override open var shouldAutorotate: Bool {
         return false
     }
@@ -192,6 +233,8 @@ class DailyPlannerViewController: UIViewController {
         self.view.addSubview(monthRightButton)
         self.view.addSubview(weekStackView)
         self.view.addSubview(weekCollectionView)
+        self.view.addSubview(tasksTableView)
+        
         monthLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(DailyPlannerConstants.monthTop)
             $0.leading.equalTo(monthLeftButton.snp.trailing).offset(DailyPlannerConstants.monthButtonOffset)
@@ -216,10 +259,38 @@ class DailyPlannerViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(DailyPlannerConstants.daysBottom)
         }
+        tasksTableView.snp.makeConstraints {
+            $0.top.equalTo(weekCollectionView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
     }
 }
 
-extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
+    // TasksTableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        hours.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tasksTableView.dequeueReusableCell(
+            withIdentifier: TasksTableViewCell.tableCellId,
+            for: indexPath) as? TasksTableViewCell else {
+                return UITableViewCell()
+        }
+        let hour = hours[indexPath.row]
+        cell.timeLabel.text = presenter.formatHour(hour: hour)
+        let events = Event().eventsForDateAndTime(date: selectedDate, hour: hour)
+        presenter.setEvents(cell: cell, events: events)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    // WeekCollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalSqures.count
     }
@@ -239,7 +310,7 @@ extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionView
         cell.dateLabel.text = String(presenter.daysOfMonth(date: date))
         
         if date == selectedDate {
-            cell.backgroundColor = .gray
+            cell.backgroundColor = UIColor(red: 212/255, green: 239/255, blue: 250/255, alpha: 1)
         } else {
             cell.backgroundColor = .white
         }

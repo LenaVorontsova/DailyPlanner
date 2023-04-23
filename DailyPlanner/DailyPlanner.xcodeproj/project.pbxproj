@@ -18,6 +18,10 @@
 		8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */; };
 		8441634929EED356006C3721 /* WeekCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634829EED356006C3721 /* WeekCollectionViewCell.swift */; };
 		8441634C29F127EF006C3721 /* WeekCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634B29F127EF006C3721 /* WeekCollectionView.swift */; };
+		8441634F29F17B97006C3721 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441634E29F17B97006C3721 /* TasksTableViewCell.swift */; };
+		8441635129F17CB4006C3721 /* TasksCellConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635029F17CB4006C3721 /* TasksCellConstants.swift */; };
+		8441635329F54846006C3721 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635229F54846006C3721 /* Event.swift */; };
+		8441635629F558AC006C3721 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441635529F558AC006C3721 /* EventViewController.swift */; };
 		D66A2A726F39A2040140AC29 /* Pods_DailyPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C60E1272A009CE337F0CA2 /* Pods_DailyPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +42,10 @@
 		8441634629EECC28006C3721 /* DailyPlannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlannerBuilder.swift; sourceTree = "<group>"; };
 		8441634829EED356006C3721 /* WeekCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionViewCell.swift; sourceTree = "<group>"; };
 		8441634B29F127EF006C3721 /* WeekCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionView.swift; sourceTree = "<group>"; };
+		8441634E29F17B97006C3721 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		8441635029F17CB4006C3721 /* TasksCellConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCellConstants.swift; sourceTree = "<group>"; };
+		8441635229F54846006C3721 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8441635529F558AC006C3721 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				8441634129EEC717006C3721 /* DailyPlannerConstants.swift */,
+				8441635029F17CB4006C3721 /* TasksCellConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -130,6 +139,7 @@
 		8441634029EDC00E006C3721 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8441635229F54846006C3721 /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +147,8 @@
 		8441634329EECC09006C3721 /* DailyPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				8441635429F5589A006C3721 /* AddEvent */,
+				8441634D29F17B85006C3721 /* TasksTable */,
 				8441634A29F127CC006C3721 /* DateCollectiion */,
 				8441632929EDBCBB006C3721 /* DailyPlannerViewController.swift */,
 				8441634429EECC1C006C3721 /* DailyPlannerPresenter.swift */,
@@ -152,6 +164,22 @@
 				8441634B29F127EF006C3721 /* WeekCollectionView.swift */,
 			);
 			path = DateCollectiion;
+			sourceTree = "<group>";
+		};
+		8441634D29F17B85006C3721 /* TasksTable */ = {
+			isa = PBXGroup;
+			children = (
+				8441634E29F17B97006C3721 /* TasksTableViewCell.swift */,
+			);
+			path = TasksTable;
+			sourceTree = "<group>";
+		};
+		8441635429F5589A006C3721 /* AddEvent */ = {
+			isa = PBXGroup;
+			children = (
+				8441635529F558AC006C3721 /* EventViewController.swift */,
+			);
+			path = AddEvent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,9 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8441635129F17CB4006C3721 /* TasksCellConstants.swift in Sources */,
+				8441635329F54846006C3721 /* Event.swift in Sources */,
 				8441634C29F127EF006C3721 /* WeekCollectionView.swift in Sources */,
 				8441633D29EDBEBC006C3721 /* StartService.swift in Sources */,
 				8441632A29EDBCBB006C3721 /* DailyPlannerViewController.swift in Sources */,
+				8441635629F558AC006C3721 /* EventViewController.swift in Sources */,
+				8441634F29F17B97006C3721 /* TasksTableViewCell.swift in Sources */,
 				8441634529EECC1C006C3721 /* DailyPlannerPresenter.swift in Sources */,
 				8441634229EEC717006C3721 /* DailyPlannerConstants.swift in Sources */,
 				8441634729EECC28006C3721 /* DailyPlannerBuilder.swift in Sources */,
@@ -344,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -398,7 +430,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -422,7 +454,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +482,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
