@@ -298,6 +298,7 @@ extension DailyPlannerViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedDate = totalSqures[indexPath.item]
         collectionView.reloadData()
+        tasksTableView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -20,7 +20,7 @@ final class TasksTableViewCell: UITableViewCell {
     }()
     var backView: UIView = {
         var view = UIView()
-        view.backgroundColor = UIColor(red: 212/255, green: 239/255, blue: 250/255, alpha: 1)
+        view.backgroundColor = .white
         return view
     }()
     var taskText1: UILabel = {
@@ -29,6 +29,7 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
+        label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()
     var taskText2: UILabel = {
@@ -37,6 +38,7 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
+        label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()
     
@@ -46,12 +48,13 @@ final class TasksTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 2
+        label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor(red: 212/255, green: 239/255, blue: 250/255, alpha: 1)
         configureConstraints()
     }
     
@@ -60,38 +63,38 @@ final class TasksTableViewCell: UITableViewCell {
     }
     
     private func configureConstraints() {
-        contentView.addSubview(timeLabel)
         contentView.addSubview(backView)
-        backView.addSubview(taskText1)
-        backView.addSubview(taskText2)
-        backView.addSubview(taskText3)
+        backView.addSubview(timeLabel)
+        contentView.addSubview(taskText1)
+        contentView.addSubview(taskText2)
+        contentView.addSubview(taskText3)
         
-        timeLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(TasksCellConstants.timeTop)
-            $0.leading.equalToSuperview().inset(TasksCellConstants.timeLead)
-            $0.trailing.equalTo(backView.snp.leading).offset(-TasksCellConstants.timeLead)
+        backView.snp.makeConstraints {
+            $0.width.equalTo(90)
+            $0.top.leading.bottom.equalToSuperview()
         }
-        backView.snp.makeConstraints { 
-            $0.top.trailing.bottom.equalToSuperview()
-//            $0.leading.equalTo(timeLabel.snp.trailing).offset(TasksCellConstants.timeLead)
+        timeLabel.snp.makeConstraints {
+            $0.top.equalTo(backView.snp.top).inset(TasksCellConstants.timeTop)
+            $0.leading.equalTo(backView.snp.leading).inset(TasksCellConstants.timeLead)
+            $0.trailing.equalTo(backView.snp.trailing).inset(TasksCellConstants.timeLead)
         }
         taskText1.snp.makeConstraints {
             $0.width.equalTo(95)
-            $0.leading.equalTo(backView.snp.leading)
+            $0.leading.equalTo(backView.snp.trailing).offset(TasksCellConstants.timeLead)
 //            $0.trailing.equalTo(backView.snp.trailing)
-            $0.top.equalTo(backView.snp.top).offset(TasksCellConstants.taskTextTop)
-            $0.bottom.equalTo(backView.snp.bottom).offset(-TasksCellConstants.taskTextTop)
+            $0.top.equalToSuperview().inset(TasksCellConstants.taskTextTop)
+            $0.bottom.equalToSuperview().inset(TasksCellConstants.taskTextTop)
         }
         taskText2.snp.makeConstraints {
             $0.width.equalTo(95)
-            $0.top.equalTo(backView.snp.top).offset(TasksCellConstants.taskTextTop)
-            $0.bottom.equalTo(backView.snp.bottom).offset(-TasksCellConstants.taskTextTop)
+            $0.top.equalToSuperview().inset(TasksCellConstants.taskTextTop)
+            $0.bottom.equalToSuperview().inset(TasksCellConstants.taskTextTop)
             $0.leading.equalTo(taskText1.snp.trailing).offset(TasksCellConstants.timeLead)
         }
         taskText3.snp.makeConstraints {
             $0.width.equalTo(95)
-            $0.top.equalTo(backView.snp.top).offset(TasksCellConstants.taskTextTop)
-            $0.bottom.equalTo(backView.snp.bottom).offset(-TasksCellConstants.taskTextTop)
+            $0.top.equalToSuperview().inset(TasksCellConstants.taskTextTop)
+            $0.bottom.equalToSuperview().inset(TasksCellConstants.taskTextTop)
             $0.leading.equalTo(taskText2.snp.trailing).offset(TasksCellConstants.timeLead)
 //            $0.trailing.equalTo(backView.snp.trailing).offset(-TasksCellConstants.timeLead)
         }
