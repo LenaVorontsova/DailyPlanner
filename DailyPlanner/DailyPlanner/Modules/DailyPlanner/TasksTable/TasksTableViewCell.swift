@@ -81,7 +81,6 @@ final class TasksTableViewCell: UITableViewCell {
         taskText1.snp.makeConstraints {
             $0.width.equalTo(95)
             $0.leading.equalTo(backView.snp.trailing).offset(TasksCellConstants.timeLead)
-//            $0.trailing.equalTo(backView.snp.trailing)
             $0.top.equalToSuperview().inset(TasksCellConstants.taskTextTop)
             $0.bottom.equalToSuperview().inset(TasksCellConstants.taskTextTop)
         }
@@ -96,7 +95,6 @@ final class TasksTableViewCell: UITableViewCell {
             $0.top.equalToSuperview().inset(TasksCellConstants.taskTextTop)
             $0.bottom.equalToSuperview().inset(TasksCellConstants.taskTextTop)
             $0.leading.equalTo(taskText2.snp.trailing).offset(TasksCellConstants.timeLead)
-//            $0.trailing.equalTo(backView.snp.trailing).offset(-TasksCellConstants.timeLead)
         }
     }
 }

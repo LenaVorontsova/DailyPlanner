@@ -143,17 +143,23 @@ final class DailyPlannerPresenter: DailyPlannerPresenting {
     
     private func setEvent1(cell: TasksTableViewCell, event: Event) {
         cell.taskText1.isHidden = false
-        cell.taskText1.text = event.name
+        let hour = calendar.component(.hour, from: event.date!)
+        let min = calendar.component(.minute, from: event.date!)
+        cell.taskText1.text = event.name! + " " + String(hour) + ":" + String(min)
     }
     
     private func setEvent2(cell: TasksTableViewCell, event: Event) {
         cell.taskText2.isHidden = false
-        cell.taskText2.text = event.name
+        let hour = calendar.component(.hour, from: event.date!)
+        let min = calendar.component(.minute, from: event.date!)
+        cell.taskText2.text = event.name! + " " + String(hour) + ":" + String(min)
     }
     
     private func setEvent3(cell: TasksTableViewCell, event: Event) {
         cell.taskText3.isHidden = false
-        cell.taskText3.text = event.name
+        let hour = calendar.component(.hour, from: event.date!)
+        let min = calendar.component(.minute, from: event.date!)
+        cell.taskText3.text = event.name! + " " + String(hour) + ":" + String(min)
     }
     
     private func setMoreEvents(cell: TasksTableViewCell, count: Int) {
