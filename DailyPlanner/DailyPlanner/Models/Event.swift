@@ -11,14 +11,15 @@ var eventsList = [Event]()
 
 final class Event {
     var id: Int? = nil
-    var date: Date? = nil
+    var dateStart: Date? = nil
+    var dateFinish: Date? = nil
     var name: String? = nil
     var description: String? = nil
     
     func eventsForDate(date: Date) -> [Event] {
         var daysEvents = [Event]()
         for event in eventsList {
-            if Calendar.current.isDate(event.date!, inSameDayAs: date) {
+            if Calendar.current.isDate(event.dateStart!, inSameDayAs: date) || Calendar.current.isDate(event.dateFinish!, inSameDayAs: date) {
                 daysEvents.append(event)
             }
         }
@@ -28,9 +29,10 @@ final class Event {
     func eventsForDateAndTime(date: Date, hour: Int) -> [Event] {
         var daysEvents = [Event]()
         for event in eventsList {
-            if Calendar.current.isDate(event.date!, inSameDayAs: date) {
-                let eventHour = DailyPlannerPresenter().hourFromDate(date: event.date!)
-                if eventHour == hour {
+            if Calendar.current.isDate(event.dateStart!, inSameDayAs: date) || Calendar.current.isDate(event.dateFinish!, inSameDayAs: date) {
+                let eventHourStart = DailyPlannerPresenter().hourFromDate(date: event.dateStart!)
+                let eventHourFinish = DailyPlannerPresenter().hourFromDate(date: event.dateFinish!)
+                if eventHourStart == hour || eventHourFinish == hour {
                     daysEvents.append(event)
                 }
             }

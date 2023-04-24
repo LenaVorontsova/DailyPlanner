@@ -28,8 +28,14 @@ final class EventViewController: UIViewController {
         textView.font = .systemFont(ofSize: 18)
         return textView
     }()
-    private var dateEvent: UIDatePicker = {
+    private var startDateEvent: UIDatePicker = {
         var date = UIDatePicker()
+        date.locale = Locale(identifier: "en_GB")
+        return date
+    }()
+    private var finishDateEvent: UIDatePicker = {
+        var date = UIDatePicker()
+        date.locale = Locale(identifier: "en_GB")
         return date
     }()
     private var saveButton: UIBarButtonItem = {
@@ -43,7 +49,7 @@ final class EventViewController: UIViewController {
         view.backgroundColor = .white
         self.navigationItem.title = "Событие"
         self.navigationItem.rightBarButtonItem = saveButton
-        dateEvent.date = selectedDate
+        startDateEvent.date = selectedDate
         
         saveButton.target = self
         saveButton.action = #selector(saveData)
@@ -56,7 +62,8 @@ final class EventViewController: UIViewController {
         newEvent.id = eventsList.count
         newEvent.name = nameEvent.text
         newEvent.description = descriptionEvent.text
-        newEvent.date = dateEvent.date
+        newEvent.dateStart = startDateEvent.date
+        newEvent.dateFinish = finishDateEvent.date
         eventsList.append(newEvent)
         self.navigationController?.popViewController(animated: false)
         dismiss(animated: false)
@@ -65,7 +72,8 @@ final class EventViewController: UIViewController {
     private func configureConstraints() {
         view.addSubview(nameEvent)
         view.addSubview(descriptionEvent)
-        view.addSubview(dateEvent)
+        view.addSubview(startDateEvent)
+        view.addSubview(finishDateEvent)
         
         nameEvent.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(EventConstants.nameTop)
@@ -75,8 +83,12 @@ final class EventViewController: UIViewController {
             $0.top.equalTo(nameEvent.snp.bottom).offset(EventConstants.nameTop)
             $0.leading.trailing.equalToSuperview().inset(EventConstants.nameInset)
         }
-        dateEvent.snp.makeConstraints {
+        startDateEvent.snp.makeConstraints {
             $0.top.equalTo(descriptionEvent.snp.bottom).offset(EventConstants.nameTop)
+            $0.leading.trailing.equalToSuperview().inset(EventConstants.dateInset)
+        }
+        finishDateEvent.snp.makeConstraints {
+            $0.top.equalTo(startDateEvent.snp.bottom).offset(EventConstants.nameTop)
             $0.leading.trailing.equalToSuperview().inset(EventConstants.dateInset)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(EventConstants.nameBottom)
         }

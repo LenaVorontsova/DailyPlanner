@@ -26,18 +26,18 @@ final class TasksTableViewCell: UITableViewCell {
     var taskText1: UILabel = {
         var label = UILabel()
         label.text = "Task1"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 4
         label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()
     var taskText2: UILabel = {
         var label = UILabel()
         label.text = "Task2"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 4
         label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()
@@ -45,9 +45,9 @@ final class TasksTableViewCell: UITableViewCell {
     var taskText3: UILabel = {
         var label = UILabel()
         label.text = "Task3"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 4
         label.backgroundColor =  UIColor(red: 165/255, green: 226/255, blue: 250/255, alpha: 1)
         return label
     }()

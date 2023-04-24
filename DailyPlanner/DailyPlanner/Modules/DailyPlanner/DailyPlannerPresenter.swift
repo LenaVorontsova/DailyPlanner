@@ -143,23 +143,29 @@ final class DailyPlannerPresenter: DailyPlannerPresenting {
     
     private func setEvent1(cell: TasksTableViewCell, event: Event) {
         cell.taskText1.isHidden = false
-        let hour = calendar.component(.hour, from: event.date!)
-        let min = calendar.component(.minute, from: event.date!)
-        cell.taskText1.text = event.name! + " " + String(hour) + ":" + String(min)
+        let hourStart = calendar.component(.hour, from: event.dateStart!)
+        let minStart = calendar.component(.minute, from: event.dateStart!)
+        let hourFinish = calendar.component(.hour, from: event.dateFinish!)
+        let minFinish = calendar.component(.minute, from: event.dateFinish!)
+        cell.taskText1.text = event.name! + " " + String(hourStart) + ":" + String(minStart) + "-" + String(hourFinish) + ":" + String(minFinish)
     }
     
     private func setEvent2(cell: TasksTableViewCell, event: Event) {
         cell.taskText2.isHidden = false
-        let hour = calendar.component(.hour, from: event.date!)
-        let min = calendar.component(.minute, from: event.date!)
-        cell.taskText2.text = event.name! + " " + String(hour) + ":" + String(min)
+        let hourStart = calendar.component(.hour, from: event.dateStart!)
+        let minStart = calendar.component(.minute, from: event.dateStart!)
+        let hourFinish = calendar.component(.hour, from: event.dateFinish!)
+        let minFinish = calendar.component(.minute, from: event.dateFinish!)
+        cell.taskText2.text = event.name! + " " + String(hourStart) + ":" + String(minStart) + "-" + String(hourFinish) + ":" + String(minFinish)
     }
     
     private func setEvent3(cell: TasksTableViewCell, event: Event) {
         cell.taskText3.isHidden = false
-        let hour = calendar.component(.hour, from: event.date!)
-        let min = calendar.component(.minute, from: event.date!)
-        cell.taskText3.text = event.name! + " " + String(hour) + ":" + String(min)
+        let hourStart = calendar.component(.hour, from: event.dateStart!)
+        let minStart = calendar.component(.minute, from: event.dateStart!)
+        let hourFinish = calendar.component(.hour, from: event.dateFinish!)
+        let minFinish = calendar.component(.minute, from: event.dateFinish!)
+        cell.taskText3.text = event.name! + " " + String(hourStart) + ":" + String(minStart) + "-" + String(hourFinish) + ":" + String(minFinish)
     }
     
     private func setMoreEvents(cell: TasksTableViewCell, count: Int) {
